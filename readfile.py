@@ -4,22 +4,27 @@
 import csv
 import os.path
 import sys
->>>>>>> gabriel
 
 
-def read_file_csv(path: str) -> list[list]:
+def read_file_csv(path: str) -> list:
     """Reads a csv file
     :return : a list of rows of a csv file"""
+    with open(path, 'r') as fr:
+        reader = csv.reader(fr)
+        rows = [row for row in reader]
+    return rows
 
 
-def read_file_txt(path: str) -> list:
+def read_file_txt(path: str) -> list[str]:
     """Reads a text file
     :return : a list of rows of a text file"""
+    with open(path, 'r') as fr:
+        lines = fr.readlines()
+    return lines
 
 
 if __name__ == "__main__":
     file_path = ''.join(sys.argv[1::])
-    print(file_path)
     if os.path.splitext(file_path)[1] == '.csv':
         file = ''.join(read_file_csv(file_path))
         print(file)
@@ -29,4 +34,3 @@ if __name__ == "__main__":
     else:
         ext = os.path.splitext(file_path)[1]
         print(f'Not implemented for files {ext}')
-
