@@ -1,6 +1,11 @@
 # Scrie o aplicatie care sa poata fi executata din linie de comanda (terminal), care sa primeasca
 # argumente fisiere text si/sau csv si sa returneze continutul fisierelor in terminal
 
+import csv
+import os.path
+import sys
+>>>>>>> gabriel
+
 
 def read_file_csv(path: str) -> list[list]:
     """Reads a csv file
@@ -13,4 +18,15 @@ def read_file_txt(path: str) -> list:
 
 
 if __name__ == "__main__":
-    pass
+    file_path = ''.join(sys.argv[1::])
+    print(file_path)
+    if os.path.splitext(file_path)[1] == '.csv':
+        file = ''.join(read_file_csv(file_path))
+        print(file)
+    elif os.path.splitext(file_path)[1] == '.txt':
+        file = ''.join(read_file_txt(file_path))
+        print(file)
+    else:
+        ext = os.path.splitext(file_path)[1]
+        print(f'Not implemented for files {ext}')
+
