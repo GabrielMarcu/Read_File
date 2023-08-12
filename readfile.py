@@ -2,6 +2,7 @@
 # argumente fisiere text si/sau csv si sa returneze continutul fisierelor in terminal
 import csv
 import os.path
+import sys
 
 
 def read_file_csv(path: str) -> list[list]:
@@ -24,7 +25,8 @@ def read_file_txt(path: str) -> list:
 
 
 if __name__ == "__main__":
-    file_path = input("file path: ")
+    file_path = ''.join(sys.argv[1::])
+    print(file_path)
     if os.path.splitext(file_path)[1] == '.csv':
         file = ''.join(read_file_csv(file_path))
         print(file)
