@@ -11,7 +11,8 @@ def read_file_csv(path: str) -> list:
     :return : a list of rows of a csv file"""
     with open(path, 'r') as fr:
         reader = csv.reader(fr)
-        rows = [row for row in reader]
+        rows = ['\n'.join(row) for row in reader]
+
     return rows
 
 
@@ -25,6 +26,7 @@ def read_file_txt(path: str) -> list[str]:
 
 if __name__ == "__main__":
     file_path = ''.join(sys.argv[1::])
+    # file_path = r"D:\Gabriel\Curs_Python\Team_Project\CSV_to_TXT_to_CSV\libs\test_w_csv.csv"
     if os.path.splitext(file_path)[1] == '.csv':
         file = ''.join(read_file_csv(file_path))
         print(file)
